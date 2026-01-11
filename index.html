@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活力美髮學堂 - 維度躍遷戰略</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Noto+Sans+TC:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Noto Serif TC', serif; overflow: hidden; background-color: #fff; color: #000; }
         
@@ -24,9 +24,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.4); 
+            background: rgba(255, 255, 255, 0.6); 
             backdrop-filter: blur(20px); 
-            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #000; /* 加強邊框 */
             z-index: 1000;
         }
         
@@ -38,12 +38,12 @@
             color: #000;
             letter-spacing: 1px; 
             transition: 0.4s; 
-            font-weight: 300; 
+            font-weight: 500; 
             font-size: 0.95rem;
         }
         
         .nav-item:hover { color: #6c5ce7; }
-        .nav-item.active { color: #6c5ce7; border-bottom: 1px solid #6c5ce7; }
+        .nav-item.active { color: #6c5ce7; border-bottom: 2px solid #6c5ce7; }
 
         /* --- 內容顯示區 --- */
         #content-target { 
@@ -54,60 +54,61 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            scroll-behavior: smooth;
         }
 
         .ebook-page {
             max-width: 850px;
             width: 85%;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(30px);
+            background: #ffffff; /* 使用全白底色襯托黑字 */
             padding: 65px 75px;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.02);
-            border: 0.5px solid rgba(0,0,0,0.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border: 1px solid #000; /* 外框加黑 */
             margin-bottom: 60px;
-            line-height: 2.3; /* 增加行高配合大字 */
+            line-height: 2.3;
             letter-spacing: 1.5px;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.4s ease;
         }
 
-        .page-title { font-size: 1.85rem; margin-bottom: 45px; text-align: center; color: #000; font-weight: 400; letter-spacing: 3px; }
+        /* 標題全黑 */
+        .page-title { font-size: 2rem; margin-bottom: 45px; text-align: center; color: #000; font-weight: 600; letter-spacing: 3px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         
-        /* 內文字級調大 */
-        .text-content { font-size: 1.25rem; color: #111; font-weight: 300; margin-bottom: 30px; text-align: justify; white-space: pre-wrap; }
+        /* 內文全黑加深 */
+        .text-content { font-size: 1.25rem; color: #000; font-weight: 400; margin-bottom: 30px; text-align: justify; white-space: pre-wrap; }
         
+        /* 總結區塊加強 */
         .summary-highlight {
-            background: rgba(108, 92, 231, 0.05);
+            background: #fdfdfd;
             padding: 40px;
-            border: 0.5px solid rgba(108, 92, 231, 0.2);
+            border: 2px solid #000; /* 黑色實線框 */
             margin: 45px 0;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            color: #000;
             line-height: 2.4;
         }
 
-        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 35px; border-top: 0.5px solid #eee; padding-top: 35px; }
-        .vs-label { font-size: 0.9rem; color: #888; text-transform: uppercase; margin-bottom: 12px; display: block; font-weight: 400; }
+        /* 對比區塊設計 */
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 35px; border-top: 2px solid #000; padding-top: 35px; }
+        .vs-label { font-size: 0.9rem; color: #000; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600; text-decoration: underline; }
         
-        /* 對比區塊大字 */
-        .vs-content { font-size: 1.15rem; color: #111; line-height: 2.1; font-weight: 300; }
-        .premium-text { color: #6c5ce7; font-weight: 400; }
+        .vs-content { font-size: 1.2rem; color: #000; line-height: 2.1; font-weight: 400; }
+        .premium-text { color: #6c5ce7; font-weight: 500; border-left: 4px solid #6c5ce7; padding-left: 20px; }
 
         /* 手機版導航 */
-        .mobile-nav { display: none; position: fixed; width: 100%; left: 0; background: rgba(255,255,255,0.95); z-index: 2000; }
-        #mobile-top { top: 0; border-bottom: 0.5px solid #eee; text-align: center; line-height: 60px; font-weight: 300; color: #000; font-size: 1rem; letter-spacing: 2px; }
-        #mobile-bottom { bottom: 0; border-top: 0.5px solid #eee; padding-bottom: env(safe-area-inset-bottom); }
+        .mobile-nav { display: none; position: fixed; width: 100%; left: 0; background: #fff; z-index: 2000; border-bottom: 1px solid #000; }
+        #mobile-top { top: 0; text-align: center; line-height: 60px; font-weight: 600; color: #000; font-size: 1.1rem; letter-spacing: 2px; }
+        #mobile-bottom { bottom: 0; border-top: 1px solid #000; padding-bottom: env(safe-area-inset-bottom); }
         .mobile-nav-list { display: flex; justify-content: space-around; height: 60px; }
-        .m-btn { flex: 1; text-align: center; color: #888; display: flex; flex-direction: column; justify-content: center; cursor: pointer; font-size: 0.85rem; }
-        .m-btn.active { color: #6c5ce7; font-weight: 400; }
+        .m-btn { flex: 1; text-align: center; color: #000; display: flex; flex-direction: column; justify-content: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; }
+        .m-btn.active { background: #000; color: #fff; }
 
         @media (max-width: 768px) {
             .nav-header { display: none; }
             .mobile-nav { display: block; }
             #content-target { margin-top: 60px; margin-bottom: 60px; padding: 20px 0; }
-            .ebook-page { padding: 45px 25px; width: 92%; }
+            .ebook-page { padding: 45px 25px; width: 92%; border-radius: 0; }
             .text-content { font-size: 1.15rem; }
             .vs-content { font-size: 1.1rem; }
-            .vs-grid { grid-template-columns: 1fr; gap: 35px; }
+            .vs-grid { grid-template-columns: 1fr; gap: 40px; }
             .page-title { font-size: 1.5rem; }
         }
     </style>
@@ -128,8 +129,7 @@
     <div id="mobile-top" class="mobile-nav">VITALITY ACADEMY</div>
 
     <main id="content-target">
-        <div class="ebook-page" id="page-content">
-            </div>
+        <div class="ebook-page" id="page-content"></div>
     </main>
 
     <nav id="mobile-bottom" class="mobile-nav">
@@ -148,8 +148,7 @@
         {
             title: "「合作價值提案」",
             content: `
-                <div class="text-content"><b>何謂美髮業極少人能做到的「維度提升」</b>
-在美髮產業中，絕大多數人的成長邏輯是「線性的」：技術更好→收費更高→開店（投入更多勞力）。而我所做的「維度提升」，是直接打破這個天花板，從勞力競爭躍遷到系統競爭。具體來說，我完成了以下四個維度的跨越：</div>
+                <div class="text-content"><b>何謂美髮業極少人能做到的「維度提升」</b><br>在美髮產業中，絕大多數人的成長邏輯是「線性的」：技術更好→收費更高→開店（投入更多勞力）。而我所做的「維度提升」，是直接打破這個天花板，從勞力競爭躍遷到系統競爭。具體來說，我完成了以下四個維度的跨越：</div>
                 
                 <div class="summary-highlight">
                     <b>總結來說</b><br>
@@ -158,8 +157,7 @@
                     我們要的不是「更多的工作」，而是一個「新的生命維度」（既賺到錢，又有生活品質的快意人生）。
                 </div>
 
-                <div class="text-content">我用這四個「維度提升」的優勢，形成一份「合作價值提案」嗎？
-加入我的學堂，不是來打工，而是來升級你們的商業維度！</div>
+                <div class="text-content">我用這四個「維度提升」的優勢，形成一份「合作價值提案」嗎？<br>加入我的學堂，不是來打工，而是來升級你們的商業維度！</div>
             `
         },
         {
@@ -213,19 +211,15 @@
         target.style.opacity = 0;
         
         setTimeout(() => {
-            target.innerHTML = `
-                <h1 class="page-title">${pages[index].title}</h1>
-                ${pages[index].content}
-            `;
+            target.innerHTML = `<h1 class="page-title">${pages[index].title}</h1>${pages[index].content}`;
             target.style.opacity = 1;
             document.getElementById('content-target').scrollTop = 0;
-        }, 300);
+        }, 200);
 
         document.querySelectorAll('.nav-item, .m-btn').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.nav-header .nav-item')[index].classList.add('active');
         document.querySelectorAll('.mobile-nav .m-btn')[index].classList.add('active');
     }
-
     showPage(0);
 </script>
 
