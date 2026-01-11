@@ -10,7 +10,7 @@
         :root {
             --primary-indigo: #4834d4;
             --unicorn-grad: linear-gradient(135deg, #a29bfe 0%, #fbc2eb 50%, #74b9ff 100%);
-            --text-dark: #2d3436; /* 加深文字顏色 */
+            --text-dark: #2d3436; 
             --nav-bg: rgba(255, 255, 255, 0.9);
         }
 
@@ -32,29 +32,36 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             position: sticky; top: 0; z-index: 1000;
         }
-        .nav-box { display: flex; gap: 10px; align-items: center; padding: 0 10px; }
+        .nav-box { display: flex; gap: 15px; align-items: center; padding: 0 10px; }
         
-        /* 讓字體顏色更明顯 */
+        /* 1. 字體全部呈現紫色 */
         .nav-item { 
             padding: 8px 10px; cursor: pointer; 
-            color: #555; /* 平常是深灰 */
+            color: var(--primary-indigo); /* 改為紫色 */
             text-decoration: none;
             letter-spacing: 1px; transition: 0.3s; 
-            font-weight: 700; /* 加粗 */
+            font-weight: 700; 
             font-size: 0.9rem;
         }
 
-        /* 模擬圖中「當前項目」的顏色呈現 */
-        .nav-item.active, .nav-item:hover { 
-            color: var(--primary-indigo); 
+        /* 2. 拿掉橫槓 (原本就沒寫 border-bottom，這裡確保 active 不會產生多餘裝飾) */
+        .nav-item.active { 
+            opacity: 1;
+            font-weight: 900;
         }
-        
-        .btn-link {
-            text-decoration: none; background: var(--primary-indigo); color: #fff !important;
-            padding: 6px 16px; border-radius: 50px; font-size: 0.8rem;
-            transition: 0.3s; letter-spacing: 1px; margin-left: 5px; white-space: nowrap;
-            font-weight: 500;
+
+        /* --- 3. 右側中間回頂部按鍵 --- */
+        .back-to-top {
+            position: fixed; right: 0; top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-indigo); color: #fff;
+            padding: 15px 8px; border-radius: 20px 0 0 20px;
+            writing-mode: vertical-rl;
+            text-decoration: none; font-size: 0.8rem;
+            letter-spacing: 2px; box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 2000; cursor: pointer; transition: 0.3s;
         }
+        .back-to-top:hover { padding-right: 15px; }
 
         /* --- 主內容區 --- */
         .container { padding: 40px 5% 100px 5%; max-width: 1100px; margin: auto; }
@@ -106,24 +113,25 @@
         .pc-arrow { display: flex; align-items: center; color: white; font-size: 1.2rem; }
         .mobile-arrow { display: none; }
 
-        /* 底部文案區 */
+        /* 底部文案區調整 */
         .talk-text {
-            background: #fff; padding: 40px; border-radius: 30px;
+            background: #fff; padding: 45px; border-radius: 35px;
             margin-top: 40px; border: 1px solid #eee;
             box-shadow: 0 10px 40px rgba(0,0,0,0.02);
-            color: #000;
+            color: #2d3436; scroll-margin-top: 100px;
         }
-        .talk-text h2 { color: var(--primary-indigo); margin-top: 0; font-weight: 700; font-family: 'Noto Serif TC'; font-size: 1.5rem; margin-bottom: 20px; }
-        .talk-text p { font-weight: 400; font-size: 1.05rem; margin-bottom: 15px; line-height: 1.8; }
+        .talk-text h2 { color: var(--primary-indigo); margin-top: 0; font-weight: 700; font-family: 'Noto Serif TC'; font-size: 1.6rem; margin-bottom: 25px; }
+        .talk-text p { font-weight: 400; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.9; text-align: justify; }
+        .talk-text .section-heading { font-weight: 700; color: var(--primary-indigo); margin-top: 30px; display: block; font-size: 1.2rem; }
 
         @media (max-width: 992px) {
             .matrix-layout { flex-direction: column; gap: 12px; }
             .mobile-arrow { display: block; text-align: center; color: white; padding: 5px; font-size: 1rem; }
             .pc-arrow { display: none; }
             .main-title { font-size: 1.5rem; }
-            /* 手機版導航優化 */
-            .nav-box { gap: 5px; overflow-x: auto; padding-bottom: 5px; }
-            .nav-item { font-size: 0.8rem; padding: 5px; white-space: nowrap; }
+            .nav-box { gap: 5px; overflow-x: auto; justify-content: flex-start; }
+            .nav-item { font-size: 0.8rem; padding: 5px 8px; white-space: nowrap; }
+            .talk-text { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -132,12 +140,14 @@
 <header class="nav-header">
     <div class="nav-box">
         <a href="index.html" class="nav-item">回首頁</a>
-        <a href="#level1" class="nav-item active">技術奠基</a>
+        <a href="#level1" class="nav-item">技術奠基</a>
         <a href="#level2" class="nav-item">數位導師</a>
         <a href="#level3" class="nav-item">平台槓桿</a>
-        <a href="策略.html" class="btn-link">回頂部</a>
+        <a href="#seeds" class="nav-item">種子學員</a>
     </div>
 </header>
+
+<a href="#" class="back-to-top">回頂部</a>
 
 <div class="container">
     <div class="header-section">
@@ -195,14 +205,21 @@
         </div>
     </div>
 
-    <div class="talk-text">
-        <h2>致 10 位種子學員：</h2>
-        <p>跟著這張地圖走，你們不再只是拿剪刀的設計師，而是未來美業生態系的共同經營者。</p>
-        <p>從你們手上的三本書開始，到我親手開發的 8 個經營 App，每一步都是為了讓你們從「技術」走向「經營」，最終走向「槓桿化」的自由人生。這是我為你們打造的數位大腦，讓我們一起把美髮業變得很酷！</p>
+    <div class="talk-text" id="seeds">
+        <h2>致親愛的種子學員：</h2>
+        <p>大家好，我是創始人葉老師，經歷30餘年的美髮生涯，終於走到美髮教育，並邁向數位化，近一年來我的心力都放在這張地圖上，因為這是我要交給你們的數位王國。</p>
+
+        <span class="section-heading">1. 技術奠基者：不只是剪髮，是技術的靈魂</span>
+        <p>很多人以為跟我學的是技術，但你們手裡拿著的那三本書，是我30年功力的結晶。那是我們的第一級：技術奠基。沒有這紮實的底蘊，後面的數位化都是空談。你們要在實體課裡把技術練進骨子裡，這才是美髮人的根。</p>
+
+        <span class="section-heading">2. 數位導師：從勞力到數位大腦的躍遷</span>
+        <p>當你們準備好進入第二級，我會直接將我的數位辦公室 Montor 1.0 免費送給你們。這是我送給種子學員的禮物，讓你們先學會最基礎的『客戶預約』與『客戶管理』，體驗數位化的便利。</p>
+        <p>但如果你們想要真正翻轉經營，你們會需要 <b>Montor 2.0 美髮經營學</b>。這門付費課程搭配了 8 個專屬 App，是我親手為你們打造的經營武器。它會教你管收銀、算分潤、控庫存，這才是你從勞力轉向系統獲利的關鍵。在這裡，我還藏了一個秘密武器——美業平台入口，等你們學會經營，它會開啟跨店連動的龐大威力。</p>
+
+        <span class="section-heading">3. 平台槓桿：成為掌握槓桿的企業主</span>
+        <p>最後，我要帶領你們走向第三級：平台槓桿經營。我會完成公司營業登記，將學堂正式企業化，並邀請專案講師開辦實體課。我會教導你們如何做數位槓桿經營，這不是要你們更辛苦工作，而是要教你們如何既能賺到錢，又能擁有像我一樣的快意人生。</p>
     </div>
 </div>
 
 </body>
 </html>
-
-
