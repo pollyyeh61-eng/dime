@@ -5,123 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活力美髮學堂 - 維度躍遷戰略</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;500;700&family=Noto+Sans+TC:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400&family=Noto+Sans+TC:wght@300;400&display=swap');
 
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Noto Serif TC', serif; overflow: hidden; background-color: #fff; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Noto Serif TC', serif; overflow: hidden; background-color: #fff; color: #000; }
         
         .app-container {
             display: flex; 
             flex-direction: column;
             height: 100vh;
-            background: white linear-gradient(105deg, #fff 0%, #fff 25%, #fceae6 40%, #fbc2eb 60%, #a1c4fd 85%, #c2e9fb 100%);
+            background: white linear-gradient(105deg, #fff 0%, #f9f9f9 25%, #fceae6 40%, #fbc2eb 60%, #a1c4fd 85%, #c2e9fb 100%);
             background-attachment: fixed;
         }
 
-        /* --- [電腦版] 頂部導航列 --- */
+        /* --- 頂部導航 --- */
         .nav-header {
             width: 100%;
-            height: 80px;
+            height: 70px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(25px); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.4); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
         
-        .nav-box { display: flex; gap: 5px; }
+        .nav-box { display: flex; gap: 15px; }
 
         .nav-item { 
-            padding: 10px 20px; 
+            padding: 5px 12px; 
             cursor: pointer; 
-            color: #322b5f; 
+            color: #000;
             letter-spacing: 1px; 
-            transition: 0.3s; 
-            font-weight: 500;
-            font-size: 1rem;
-            border-bottom: 3px solid transparent;
+            transition: 0.4s; 
+            font-weight: 300; 
+            font-size: 0.95rem;
         }
         
         .nav-item:hover { color: #6c5ce7; }
-        .nav-item.active { 
-            color: #6c5ce7;
-            border-bottom: 3px solid #6c5ce7; 
-            font-weight: 700; 
-        }
+        .nav-item.active { color: #6c5ce7; border-bottom: 1px solid #6c5ce7; }
 
-        /* 內容顯示區塊 */
+        /* --- 內容顯示區 --- */
         #content-target { 
             flex: 1; 
             width: 100%;
             overflow-y: auto; 
-            scrollbar-width: none; 
-            transition: opacity 0.3s ease; 
-            padding: 60px 0;
+            padding: 50px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            scroll-behavior: smooth;
         }
-        #content-target::-webkit-scrollbar { display: none; }
 
-        /* 內容卡片樣式 */
-        .content-card {
+        .ebook-page {
             max-width: 850px;
-            width: 90%;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(20px);
-            border-radius: 40px;
-            padding: 60px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
-            border: 1px solid rgba(255,255,255,0.8);
-            margin-bottom: 50px;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            width: 85%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(30px);
+            padding: 65px 75px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.02);
+            border: 0.5px solid rgba(0,0,0,0.05);
+            margin-bottom: 60px;
+            line-height: 2.3; /* 增加行高配合大字 */
+            letter-spacing: 1.5px;
+            transition: opacity 0.5s ease;
         }
 
-        .dim-header { color: #6c5ce7; font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 15px; font-weight: 700; text-transform: uppercase; }
-        .dim-title { font-size: 2.4rem; margin-bottom: 35px; color: #322b5f; line-height: 1.3; }
+        .page-title { font-size: 1.85rem; margin-bottom: 45px; text-align: center; color: #000; font-weight: 400; letter-spacing: 3px; }
         
-        .compare-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid rgba(108, 92, 231, 0.15); padding-top: 35px; }
-        .side { display: flex; flex-direction: column; gap: 15px; }
-        .label { font-size: 0.7rem; color: #888; letter-spacing: 2px; font-family: 'Noto Sans TC'; font-weight: 700; }
-        .role-title { font-size: 1.2rem; color: #444; font-weight: 700; margin-bottom: 5px; }
-        .desc { font-size: 1rem; color: #666; line-height: 1.8; font-family: 'Noto Sans TC'; font-weight: 300; }
+        /* 內文字級調大 */
+        .text-content { font-size: 1.25rem; color: #111; font-weight: 300; margin-bottom: 30px; text-align: justify; white-space: pre-wrap; }
         
-        /* 強調妳的維度 */
-        .premium-side { background: rgba(108, 92, 231, 0.05); padding: 25px; border-radius: 20px; border: 1px solid rgba(108, 92, 231, 0.1); }
-        .highlight { color: #6c5ce7; font-weight: 700; }
-
-        /* 總結區塊樣式 */
-        .summary-box {
-            text-align: center;
-            max-width: 800px;
+        .summary-highlight {
+            background: rgba(108, 92, 231, 0.05);
             padding: 40px;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(161, 196, 253, 0.1));
-            border-radius: 30px;
-            margin-top: 20px;
+            border: 0.5px solid rgba(108, 92, 231, 0.2);
+            margin: 45px 0;
+            font-size: 1.2rem;
+            line-height: 2.4;
         }
-        .summary-box h3 { color: #322b5f; margin-bottom: 20px; font-size: 1.5rem; }
-        .summary-box p { color: #555; line-height: 2; font-size: 1.05rem; }
 
-        /* --- [手機版] --- */
-        .mobile-nav { 
-            display: none; position: fixed; width: 100%; left: 0; 
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); 
-            z-index: 2000; box-shadow: 0 -5px 20px rgba(0,0,0,0.03);
-        }
-        #mobile-top { top: 0; border-bottom: 1px solid rgba(0,0,0,0.05); text-align: center; line-height: 60px; font-weight: 700; color: #322b5f; letter-spacing: 2px; }
-        #mobile-bottom { bottom: 0; border-top: 1px solid rgba(0,0,0,0.05); padding-bottom: env(safe-area-inset-bottom); }
-        .mobile-nav-list { display: flex; justify-content: space-around; align-items: center; height: 60px; }
-        .m-btn { flex: 1; text-align: center; font-size: 0.75rem; color: #666; display: flex; flex-direction: column; justify-content: center; height: 100%; cursor: pointer; }
-        .m-btn.active { color: #6c5ce7; font-weight: 700; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 35px; border-top: 0.5px solid #eee; padding-top: 35px; }
+        .vs-label { font-size: 0.9rem; color: #888; text-transform: uppercase; margin-bottom: 12px; display: block; font-weight: 400; }
+        
+        /* 對比區塊大字 */
+        .vs-content { font-size: 1.15rem; color: #111; line-height: 2.1; font-weight: 300; }
+        .premium-text { color: #6c5ce7; font-weight: 400; }
+
+        /* 手機版導航 */
+        .mobile-nav { display: none; position: fixed; width: 100%; left: 0; background: rgba(255,255,255,0.95); z-index: 2000; }
+        #mobile-top { top: 0; border-bottom: 0.5px solid #eee; text-align: center; line-height: 60px; font-weight: 300; color: #000; font-size: 1rem; letter-spacing: 2px; }
+        #mobile-bottom { bottom: 0; border-top: 0.5px solid #eee; padding-bottom: env(safe-area-inset-bottom); }
+        .mobile-nav-list { display: flex; justify-content: space-around; height: 60px; }
+        .m-btn { flex: 1; text-align: center; color: #888; display: flex; flex-direction: column; justify-content: center; cursor: pointer; font-size: 0.85rem; }
+        .m-btn.active { color: #6c5ce7; font-weight: 400; }
 
         @media (max-width: 768px) {
             .nav-header { display: none; }
             .mobile-nav { display: block; }
-            #content-target { margin-top: 60px; margin-bottom: 60px; height: calc(100vh - 120px); padding: 30px 0; }
-            .compare-section { grid-template-columns: 1fr; gap: 30px; }
-            .content-card { padding: 40px 25px; }
-            .dim-title { font-size: 1.8rem; }
+            #content-target { margin-top: 60px; margin-bottom: 60px; padding: 20px 0; }
+            .ebook-page { padding: 45px 25px; width: 92%; }
+            .text-content { font-size: 1.15rem; }
+            .vs-content { font-size: 1.1rem; }
+            .vs-grid { grid-template-columns: 1fr; gap: 35px; }
+            .page-title { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -130,109 +117,116 @@
 <div class="app-container">
     <header class="nav-header">
         <div class="nav-box">
-            <div class="nav-item active" onclick="showDim(1)">系統開發</div>
-            <div class="nav-item" onclick="showDim(2)">平台生態</div>
-            <div class="nav-item" onclick="showDim(3)">數位槓桿</div>
-            <div class="nav-item" onclick="showDim(4)">數據資產</div>
-            <div class="nav-item" onclick="showDim(5)">合作提案</div>
+            <div class="nav-item active" onclick="showPage(0)">合作價值提案</div>
+            <div class="nav-item" onclick="showPage(1)">系統開發者</div>
+            <div class="nav-item" onclick="showPage(2)">平台生態</div>
+            <div class="nav-item" onclick="showPage(3)">數位槓桿</div>
+            <div class="nav-item" onclick="showPage(4)">數據資產</div>
         </div>
     </header>
 
-    <div id="mobile-top" class="mobile-nav">維度躍遷：合作提案</div>
+    <div id="mobile-top" class="mobile-nav">VITALITY ACADEMY</div>
 
     <main id="content-target">
-        <div class="content-card" id="card-inner">
+        <div class="ebook-page" id="page-content">
             </div>
     </main>
 
     <nav id="mobile-bottom" class="mobile-nav">
         <div class="mobile-nav-list">
-            <div class="m-btn active" onclick="showDim(1)">開發</div>
-            <div class="m-btn" onclick="showDim(2)">生態</div>
-            <div class="m-btn" onclick="showDim(3)">槓桿</div>
-            <div class="m-btn" onclick="showDim(4)">數據</div>
-            <div class="m-btn" onclick="showDim(5)">提案</div>
+            <div class="m-btn active" onclick="showPage(0)">提案</div>
+            <div class="m-btn" onclick="showPage(1)">系統</div>
+            <div class="m-btn" onclick="showPage(2)">生態</div>
+            <div class="m-btn" onclick="showPage(3)">槓桿</div>
+            <div class="m-btn" onclick="showPage(4)">數據</div>
         </div>
     </nav>
 </div>
 
 <script>
-    const dimData = {
-        1: { 
-            h: "Dimension 01", t: "從「手藝人」提升至<br>「系統開發者」", 
-            f_label: "一般人：手藝思維", f_role: "名師路徑", f_desc: "專研剪燙染，目標是成為名師。這依然是用「時間換錢」，手停，錢就停。",
-            to_label: "妳的維度：開發思維", to_role: "產業大腦", to_desc: "開發 Montor 1.0 & 2.0。將技術與經營邏輯轉化為 <span class='highlight'>8個自動運行 App</span>。不再只是教剪髮，而是提供獲利工具。"
-        },
-        2: { 
-            h: "Dimension 02", t: "從「個體教學」提升至<br>「平台生態」", 
-            f_label: "一般人：教學思維", f_role: "孤立模式", f_desc: "開課教學生，學生學完就走，甚至變成競爭對手。",
-            to_label: "妳的維度：生態思維", to_role: "基礎設施提供者", to_desc: "以<span class='highlight'>三本著作</span>為標竿，設計「專案講師」制度。提供場地與數位系統，讓高手為妳的體系工作。"
-        },
-        3: { 
-            h: "Dimension 03", t: "從「實體資產」提升至<br>「數位槓桿」", 
-            f_label: "一般人：資產思維", f_role: "重資產壓力", f_desc: "借錢開分店，背負龐大房租與人事成本，規模越大風險越高。",
-            to_label: "妳的維度：槓桿思維", to_role: "輕資產玩家", to_desc: "透過線上課程無限複製。利用<span class='highlight'>美業平台入口</span>遠端對帳核銷。無論身在何處，都能掌控全局。"
-        },
-        4: { 
-            h: "Dimension 04", t: "從「主觀經驗」提升至<br>「數據資產」", 
-            f_label: "一般人：直覺思維", f_role: "模糊經營", f_desc: "經營靠感覺，利潤剩多少通常要到月底看存摺才知道。",
-            to_label: "妳的維度：數據思維", to_role: "精確領航者", to_desc: "透過 App 掌握回流規律、分潤數值與庫存流動。<span class='highlight'>數據就是權威</span>，建立無懈可擊的說服力。"
-        },
-        5: { 
-            h: "💡 總結與提案", t: "維度提升 = 降維打擊", 
-            isSummary: true,
+    const pages = [
+        {
+            title: "「合作價值提案」",
             content: `
-                <div class="summary-box">
-                    <h3>為什麼種子學員會感到震撼？</h3>
-                    <p>當其他美髮人還在泥淖裡辛苦勞作、煩惱員工離職或客戶流失時，妳是站在高處，透過<b>「書本（理論）」+「App（工具）」+「公司化（槓桿）」</b>這三位一體的系統在俯瞰戰場。</p>
-                    <p style="margin-top:20px; color:#6c5ce7; font-weight:700;">這不是給他們更多的工作，而是一個新的生命維度：<br>「既賺到錢，又有生活品質的快意人生」。</p>
+                <div class="text-content"><b>何謂美髮業極少人能做到的「維度提升」</b>
+在美髮產業中，絕大多數人的成長邏輯是「線性的」：技術更好→收費更高→開店（投入更多勞力）。而我所做的「維度提升」，是直接打破這個天花板，從勞力競爭躍遷到系統競爭。具體來說，我完成了以下四個維度的跨越：</div>
+                
+                <div class="summary-highlight">
+                    <b>總結來說</b><br>
+                    維度提升 = 降維打擊。<br>
+                    當其他美髮人還在泥淖裡辛苦勞作、煩惱員工離職或客戶流失時，我是站在高處，透過「書本（理論）」+「App（工具）」+「公司化（槓桿）」這三位一體的系統在俯瞰戰場。<br><br>
+                    我們要的不是「更多的工作」，而是一個「新的生命維度」（既賺到錢，又有生活品質的快意人生）。
+                </div>
+
+                <div class="text-content">我用這四個「維度提升」的優勢，形成一份「合作價值提案」嗎？
+加入我的學堂，不是來打工，而是來升級你們的商業維度！</div>
+            `
+        },
+        {
+            title: "1. 從「手藝人」提升至「系統開發者」",
+            content: `
+                <div class="vs-grid">
+                    <div class="vs-content"><span class="vs-label">一般人：手藝人思維</span>專研剪燙染，目標是成為名師。這依然是用「時間換錢」，手停，錢就停。</div>
+                    <div class="vs-content premium-text"><span class="vs-label">我的維度：系統開發思維</span>我跳出技術本身，去開發 Montor 1.0 & 2.0。我是在為產業設計「大腦」。當別人的技術是存在腦袋裡，我的經營邏輯已經寫成了 8 個 App。過去我只是教人怎麼剪，現在的我，是直接給你們一套自動運行的獲利工具。</div>
+                </div>
+            `
+        },
+        {
+            title: "2. 從「個體教學」提升至「平台生態」",
+            content: `
+                <div class="vs-grid">
+                    <div class="vs-content"><span class="vs-label">一般人：孤立教學</span>開課教學生，學生學完就走，甚至變成競爭對手。</div>
+                    <div class="vs-content premium-text"><span class="vs-label">我的維度：平台生態思維</span>我建立的是「活力美髮學堂」平台。<br>
+・技術層面：有三本著作作為標準。<br>
+・講師層面：我設計了「專案講師」制度，讓能為自己工作。<br>
+・資源層面：提供場地與數位系統，我成了美業的「基礎設施提供者」</div>
+                </div>
+            `
+        },
+        {
+            title: "3. 從「實體資產」提升至「數位槓桿」",
+            content: `
+                <div class="vs-grid">
+                    <div class="vs-content"><span class="vs-label">一般人：擴張思維</span>想要擴張就得借錢開分店，背負龐大的房租與人事成本（重資產）。</div>
+                    <div class="vs-content premium-text"><span class="vs-label">我的維度：槓桿思維</span>我實施的是「輕資產、高槓桿」模式。<br>
+・透過線上課程（Montor 2.0）無限複製我的經營邏輯。<br>
+・教學場地可以是專案老師的，也可以是學堂的，靈活調度。<br>
+・未來還有秘密武器-美業平台入口，客人來自網路上，用網路結合實體店面，稱為天羅地網。</div>
+                </div>
+            `
+        },
+        {
+            title: "4. 從「主觀經驗」提升至「數據資產」",
+            content: `
+                <div class="vs-grid">
+                    <div class="vs-content"><span class="vs-label">一般人：直覺經營</span>經營靠感覺，今天客人多不多？利潤剩多少？通常要到月底看存摺才知道。</div>
+                    <div class="vs-content premium-text"><span class="vs-label">我的維度：數據思維</span>透過 1.0 的導師平台與 2.0 學堂數位助理的 8 個 App，我將模糊的經驗轉化為精確的數據。<br>
+・我能看見客戶的回流規律、分潤的精確數值、庫存的流動。<br>
+・數據就是權威，成為我的 10 位種子學員，學習數位經營管理，時代就在你的腳下。</div>
                 </div>
             `
         }
-    };
+    ];
 
-    function showDim(id) {
-        const target = document.getElementById('card-inner');
+    function showPage(index) {
+        const target = document.getElementById('page-content');
         target.style.opacity = 0;
-        target.style.transform = "translateY(10px)";
         
         setTimeout(() => {
-            const data = dimData[id];
-            if(data.isSummary) {
-                target.innerHTML = `
-                    <div class="dim-header">${data.h}</div>
-                    <div class="dim-title">${data.t}</div>
-                    ${data.content}
-                `;
-            } else {
-                target.innerHTML = `
-                    <div class="dim-header">${data.h}</div>
-                    <div class="dim-title">${data.t}</div>
-                    <div class="compare-section">
-                        <div class="side">
-                            <span class="label">${data.f_label}</span>
-                            <div class="role-title">${data.f_role}</div>
-                            <div class="desc">${data.f_desc}</div>
-                        </div>
-                        <div class="side premium-side">
-                            <span class="label">${data.to_label}</span>
-                            <div class="role-title">${data.to_role}</div>
-                            <div class="desc">${data.to_desc}</div>
-                        </div>
-                    </div>
-                `;
-            }
+            target.innerHTML = `
+                <h1 class="page-title">${pages[index].title}</h1>
+                ${pages[index].content}
+            `;
             target.style.opacity = 1;
-            target.style.transform = "translateY(0)";
+            document.getElementById('content-target').scrollTop = 0;
         }, 300);
 
         document.querySelectorAll('.nav-item, .m-btn').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.nav-item')[id-1].classList.add('active');
-        document.querySelectorAll('.m-btn')[id-1].classList.add('active');
+        document.querySelectorAll('.nav-header .nav-item')[index].classList.add('active');
+        document.querySelectorAll('.mobile-nav .m-btn')[index].classList.add('active');
     }
 
-    // 初始化顯示第一頁
-    showDim(1);
+    showPage(0);
 </script>
 
 </body>
