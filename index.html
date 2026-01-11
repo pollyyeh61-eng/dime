@@ -3,138 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活力美髮學堂 - 維度躍遷戰略</title>
+    <title>活力美髮學堂 - 藝術維度</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+        /* 引入具有藝術感的宋體/明體 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;400;700;900&display=swap');
 
         body, html { 
             margin: 0; padding: 0; height: 100%; 
             font-family: 'Noto Serif TC', serif; 
-            overflow: hidden; 
-            background: #fff;
+            background: #fff; color: #1a1a1a;
+            overflow: hidden;
         }
-        
-        /* 幻彩流體背景 */
+
+        /* 幻彩流體：更柔和的藝術色調 */
         .app-container {
-            display: flex; 
-            flex-direction: column;
-            height: 100vh;
-            background: white linear-gradient(135deg, #fff 0%, #fef4f2 20%, #fbc2eb 50%, #a1c4fd 80%, #c2e9fb 100%);
+            display: flex; flex-direction: column; height: 100vh;
+            background: radial-gradient(circle at top left, #fff 0%, #fdf2f0 30%, #fbc2eb 60%, #a1c4fd 90%);
             background-attachment: fixed;
         }
 
-        /* --- 電腦版導航 --- */
+        /* 頂部導航：極簡藝術感 */
         .nav-header {
-            width: 100%; height: 80px;
+            width: 100%; height: 90px;
             display: flex; justify-content: center; align-items: center;
-            background: rgba(255, 255, 255, 0.2); 
-            backdrop-filter: blur(30px); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px);
             z-index: 1000;
         }
-        .nav-box { display: flex; gap: 30px; }
+        .nav-box { display: flex; gap: 40px; }
         .nav-item { 
-            padding: 10px 20px; cursor: pointer; color: #444;
-            letter-spacing: 2px; transition: 0.3s; font-weight: 500; font-size: 1rem;
+            cursor: pointer; color: #666; font-size: 0.9rem;
+            letter-spacing: 4px; transition: 0.5s; font-weight: 200;
         }
-        .nav-item.active { color: #6c5ce7; border-bottom: 2px solid #6c5ce7; font-weight: 900; }
+        .nav-item.active { color: #000; font-weight: 700; transform: scale(1.1); }
 
-        /* --- 內容主視窗 --- */
+        /* 內容區 */
         #content-target { 
-            flex: 1; width: 100%; overflow-y: auto; 
-            padding: 40px 0 100px 0; /* 留出底部導航空間 */
+            flex: 1; width: 100%; overflow-y: auto; padding: 20px 0 120px 0;
             display: flex; flex-direction: column; align-items: center;
-            scroll-behavior: smooth;
         }
 
-        /* 標題區塊：特別拉出 */
-        .header-section {
-            width: 85%; max-width: 800px; margin-bottom: 30px;
-            text-align: center; opacity: 0; transform: translateY(-20px);
-            animation: fadeInDown 0.8s forwards;
+        /* 標題藝術化：拉開字距、錯落感 */
+        .art-header {
+            width: 85%; max-width: 800px; margin-top: 40px; margin-bottom: 60px;
+            text-align: left; padding-left: 20px;
         }
-        .main-title { 
-            font-size: 2.2rem; color: #000; font-weight: 900; 
-            letter-spacing: 6px; margin: 0; text-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        .art-tag {
+            font-size: 0.7rem; letter-spacing: 8px; color: #6c5ce7;
+            display: block; margin-bottom: 15px; opacity: 0.8;
         }
-        .sub-tag {
-            display: inline-block; background: #6c5ce7; color: #fff;
-            padding: 5px 15px; border-radius: 50px; font-size: 0.8rem;
-            letter-spacing: 2px; margin-top: 15px; font-family: 'Noto Sans TC';
+        .art-main-title {
+            font-size: 2.6rem; font-weight: 900; letter-spacing: 12px;
+            line-height: 1.2; margin: 0; position: relative;
+            color: transparent; -webkit-text-stroke: 1px #000; /* 空心藝術字初探 */
+            background: linear-gradient(to right, #000, #444);
+            -webkit-background-clip: text; color: #000;
         }
 
-        /* 內容卡片：多重毛玻璃 */
-        .content-card {
-            max-width: 800px; width: 88%;
-            background: rgba(255, 255, 255, 0.5);
+        /* 毛玻璃內容卡片 */
+        .art-card {
+            width: 85%; max-width: 750px;
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(40px);
-            border-radius: 35px;
+            border-radius: 2px; /* 方正顯得更有文創感 */
             padding: 60px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
-            transition: all 0.5s ease;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255,255,255,0.6);
+            margin-bottom: 40px;
+            animation: slideUp 1s ease-out;
         }
 
-        /* 內部層次 */
-        .section-sub-title {
-            font-size: 1.4rem; color: #111; font-weight: 600;
-            margin-bottom: 25px; display: block; letter-spacing: 1px;
-        }
-        .article-text {
-            font-size: 1.25rem; color: #000; line-height: 2.2;
-            font-weight: 400; margin-bottom: 35px; text-align: justify;
+        .section-title {
+            font-size: 1.5rem; color: #111; font-weight: 700;
+            margin-bottom: 40px; letter-spacing: 4px; border-bottom: 1px solid #000;
+            display: inline-block; padding-bottom: 10px;
         }
 
-        /* 特別強調框 */
-        .quote-box {
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 25px; padding: 40px;
-            border-left: 6px solid #6c5ce7;
-            margin: 40px 0; font-size: 1.3rem;
-            box-shadow: inset 0 0 20px rgba(255,255,255,0.5);
+        .art-p {
+            font-size: 1.2rem; line-height: 2.5; font-weight: 300;
+            margin-bottom: 30px; letter-spacing: 2px; color: #222;
         }
 
-        /* 對比網格 */
-        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
-        .vs-card { display: flex; flex-direction: column; gap: 15px; }
-        .vs-card.premium { 
-            background: rgba(108, 92, 231, 0.08); padding: 25px; 
-            border-radius: 20px; border: 1px solid rgba(108, 92, 231, 0.1);
+        /* 降維打擊區塊：留白藝術 */
+        .focus-box {
+            margin: 60px 0; padding: 40px;
+            background: #000; color: #fff;
+            letter-spacing: 3px; line-height: 2.2;
         }
-        .vs-head { font-size: 0.9rem; color: #666; font-weight: 600; letter-spacing: 2px; }
-        .vs-body { font-size: 1.15rem; color: #000; line-height: 1.8; }
 
-        /* --- 手機底部導航 --- */
-        .mobile-bottom-nav {
-            display: none; position: fixed; bottom: 20px; left: 50%;
-            transform: translateX(-50%); width: 90%; max-width: 400px;
-            height: 65px; background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(25px); border-radius: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.5);
-            z-index: 2000;
-            justify-content: space-around; align-items: center; padding: 0 10px;
+        /* 手機導覽：藝術圓環 */
+        .mobile-nav {
+            display: none; position: fixed; bottom: 30px; 
+            width: 80%; height: 60px; background: #fff;
+            border-radius: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 2000; justify-content: space-around; align-items: center;
         }
-        .m-nav-item {
-            flex: 1; text-align: center; color: #888; font-size: 0.8rem;
-            font-weight: 500; cursor: pointer; transition: 0.3s;
-        }
-        .m-nav-item.active { color: #6c5ce7; font-weight: 900; }
+        .m-item { font-size: 0.8rem; letter-spacing: 2px; color: #999; cursor: pointer; }
+        .m-item.active { color: #000; font-weight: 700; }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 手機適配 */
         @media (max-width: 768px) {
             .nav-header { display: none; }
-            .mobile-bottom-nav { display: flex; }
-            .content-card { padding: 40px 25px; border-radius: 30px; }
-            .main-title { font-size: 1.7rem; letter-spacing: 4px; }
-            .article-text { font-size: 1.15rem; }
-            .vs-grid { grid-template-columns: 1fr; gap: 30px; }
+            .mobile-nav { display: flex; left: 10%; }
+            .art-card { padding: 40px 20px; }
+            .art-main-title { font-size: 1.8rem; letter-spacing: 6px; }
+            .art-p { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -146,99 +122,77 @@
     </header>
 
     <main id="content-target">
-        <div class="header-section">
-            <div id="page-tag" class="sub-tag">VALUE PROPOSITION</div>
-            <h1 id="page-main-title" class="main-title">合作價值提案</h1>
+        <div class="art-header">
+            <span id="art-tag" class="art-tag">DIMENSION SHIFT</span>
+            <h1 id="art-title" class="art-main-title">合作價值提案</h1>
         </div>
 
-        <div class="content-card" id="page-content">
+        <div class="art-card" id="page-content">
             </div>
     </main>
 
-    <nav class="mobile-bottom-nav" id="mobile-nav"></nav>
+    <div class="mobile-nav" id="mb-nav"></div>
 </div>
 
 <script>
     const pages = [
         {
-            tag: "STRATEGY", title: "合作價值提案",
+            tag: "CHAPTER 01 / VITALITY",
+            title: "合作價值提案",
             content: `
-                <span class="section-sub-title">何謂美髮業極少人能做到的「維度提升」</span>
-                <div class="article-text">
-                    在美髮產業中，絕大多數人的成長邏輯是<b>「線性的」</b>：技術更好→收費更高→開店（投入更多勞力）。<br><br>
-                    而我所做的「維度提升」，是直接打破這個天花板，從勞力競爭躍遷到系統競爭。具體來說，我完成了以下四個維度的跨越：
+                <span class="section-title">維度提升的藝術</span>
+                <div class="art-p">
+                    在美髮產業中，絕大多數人的成長邏輯是<b>「線性的」</b>。<br>
+                    從勞力競爭躍遷到系統競爭，這不是努力的結果，而是維度的進化。
                 </div>
-                <div class="quote-box">
-                    <b style="color:#6c5ce7; display:block; margin-bottom:15px; font-size:1.4rem;">維度提升 = 降維打擊</b>
-                    當其他美髮人還在泥淖裡辛苦勞作時，我是站在高處，透過「書本」+「App」+「公司化」三位一體的系統在俯瞰戰場。<br><br>
-                    我們要的不是更多的工作，而是一個<b>新的生命維度</b>。
-                </div>
-                <div class="article-text" style="text-align:center; color:#555;">
-                    加入我的學堂，不是來打工，<br>而是來升級你們的商業維度！
+                <div class="focus-box">
+                    維度提升 = 降維打擊。<br>
+                    書本（理論） + App（工具） + 公司化（槓桿）<br>
+                    我們要的不是更多的工作，而是生命的新維度。
                 </div>
             `
         },
         {
-            tag: "DEVELOPER", title: "系統開發者",
+            tag: "CHAPTER 02 / SYSTEM",
+            title: "系統開發者",
             content: `
-                <span class="section-sub-title">從手藝人到系統開發者</span>
-                <div class="vs-grid">
-                    <div class="vs-card">
-                        <span class="vs-head">一般人：手藝思維</span>
-                        <div class="vs-body">專研剪燙染，目標是成為名師。這依然是用「時間換錢」，手停，錢就停。</div>
-                    </div>
-                    <div class="vs-card premium">
-                        <span class="vs-head">我的維度：開發思維</span>
-                        <div class="vs-body">去開發 Montor 1.0 & 2.0，設計產業大腦。經營邏輯寫成了 <b>8 個 App</b>。我直接給你們自動運行的獲獲利工具。</div>
-                    </div>
+                <span class="section-title">手藝人 → 系統開發者</span>
+                <div class="art-p">
+                    專研剪燙染是時間換錢。我跳出技術本身，去開發產業的「大腦」。<br><br>
+                    當經營邏輯寫成了 <b style="font-size:1.5rem">8 個 App</b>，技術不再只是記憶，而是自動運行的工具。
                 </div>
             `
         },
         {
-            tag: "PLATFORM", title: "平台生態",
+            tag: "CHAPTER 03 / PLATFORM",
+            title: "平台生態",
             content: `
-                <span class="section-sub-title">從個體教學到平台生態</span>
-                <div class="vs-grid">
-                    <div class="vs-card">
-                        <span class="vs-head">一般人：教學思維</span>
-                        <div class="vs-body">開課教學生，學生學完就走，甚至變成競爭對手。</div>
-                    </div>
-                    <div class="vs-card premium">
-                        <span class="vs-head">我的維度：生態思維</span>
-                        <div class="vs-body">建立「活力美髮學堂」平台。設計<b>專案講師制度</b>，提供場地與數位系統，我成了美業的基礎設施提供者。</div>
-                    </div>
+                <span class="section-title">個體教學 → 平台生態</span>
+                <div class="art-p">
+                    孤立教學會創造競爭對手，而平台會創造合作夥伴。<br><br>
+                    三本著作、專案講師、數位系統。<br>我成了美業的「基礎設施提供者」。
                 </div>
             `
         },
         {
-            tag: "LEVERAGE", title: "數位槓桿",
+            tag: "CHAPTER 04 / LEVERAGE",
+            title: "數位槓桿",
             content: `
-                <span class="section-sub-title">從實體資產到數位槓桿</span>
-                <div class="vs-grid">
-                    <div class="vs-card">
-                        <span class="vs-head">一般人：資產思維</span>
-                        <div class="vs-body">擴張就得借錢開分店，背負龐大房租與人事成本。</div>
-                    </div>
-                    <div class="vs-card premium">
-                        <span class="vs-head">我的維度：槓桿思維</span>
-                        <div class="vs-body">透過線上課程無限複製。結合<b>天羅地網</b>策略，用網路結合實體店面，讓客人來自全網。</div>
-                    </div>
+                <span class="section-title">實體資產 → 數位槓桿</span>
+                <div class="art-p">
+                    借錢開分店是重擔。我用線上課程無限複製。<br><br>
+                    透過<b>「天羅地網」</b>，用網路結合實體，讓客人從雲端走向妳。
                 </div>
             `
         },
         {
-            tag: "DATA", title: "數據資產",
+            tag: "CHAPTER 05 / DATA",
+            title: "數據資產",
             content: `
-                <span class="section-sub-title">從主觀經驗到數據資產</span>
-                <div class="vs-grid">
-                    <div class="vs-card">
-                        <span class="vs-head">一般人：感覺經營</span>
-                        <div class="vs-body">今天客人多不多？利潤剩多少？通常要到月底看存摺才知道。</div>
-                    </div>
-                    <div class="vs-card premium">
-                        <span class="vs-head">我的維度：數據權威</span>
-                        <div class="vs-body">透過 8 個 App 將模糊經驗轉化為精確數據。回流規律、分潤、庫存一目瞭然。</div>
-                    </div>
+                <span class="section-title">主觀經驗 → 數據資產</span>
+                <div class="art-p">
+                    經營不該靠感覺。透過 8 個 App，將模糊的經驗轉化為精確的權威。<br><br>
+                    回流、分潤、庫存。時代，就在<b> 10 位種子學員</b> 的腳下。
                 </div>
             `
         }
@@ -246,39 +200,34 @@
 
     const menu = ["提案", "系統", "生態", "槓桿", "數據"];
 
-    function initNavs() {
+    function init() {
         const pc = document.getElementById('pc-nav');
-        const mb = document.getElementById('mobile-nav');
-        pc.innerHTML = menu.map((name, i) => `<div class="nav-item ${i===0?'active':''}" onclick="loadPage(${i})">${name}</div>`).join('');
-        mb.innerHTML = menu.map((name, i) => `<div class="m-nav-item ${i===0?'active':''}" onclick="loadPage(${i})">${name}</div>`).join('');
+        const mb = document.getElementById('mb-nav');
+        pc.innerHTML = menu.map((m, i) => `<div class="nav-item ${i===0?'active':''}" onclick="setPage(${i})">${m}</div>`).join('');
+        mb.innerHTML = menu.map((m, i) => `<div class="m-item ${i===0?'active':''}" onclick="setPage(${i})">${m}</div>`).join('');
+        setPage(0);
     }
 
-    function loadPage(idx) {
-        const target = document.getElementById('page-content');
-        const title = document.getElementById('page-main-title');
-        const tag = document.getElementById('page-tag');
+    function setPage(i) {
+        const content = document.getElementById('page-content');
+        const title = document.getElementById('art-title');
+        const tag = document.getElementById('art-tag');
         
-        target.style.opacity = 0;
-        target.style.transform = "scale(0.98) translateY(10px)";
+        content.style.opacity = 0;
         
         setTimeout(() => {
-            title.innerText = pages[idx].title;
-            tag.innerText = pages[idx].tag;
-            target.innerHTML = pages[idx].content;
+            title.innerText = pages[i].title;
+            tag.innerText = pages[i].tag;
+            content.innerHTML = pages[i].content;
+            content.style.opacity = 1;
             
-            target.style.opacity = 1;
-            target.style.transform = "scale(1) translateY(0)";
-            
-            document.querySelectorAll('.nav-item, .m-nav-item').forEach((el, i) => {
-                el.classList.toggle('active', (i % 5) === idx);
+            document.querySelectorAll('.nav-item, .m-item').forEach((el, idx) => {
+                el.classList.toggle('active', (idx % 5) === i);
             });
-            document.getElementById('content-target').scrollTop = 0;
         }, 300);
     }
 
-    initNavs();
-    loadPage(0);
+    init();
 </script>
-
 </body>
 </html>
