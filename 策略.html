@@ -9,14 +9,11 @@
 
         :root {
             --primary-indigo: #4834d4;
-            --soft-indigo: #f0edff;
-            --highlight-pink: #fbc2eb;
             --unicorn-grad: linear-gradient(135deg, #a29bfe 0%, #fbc2eb 50%, #74b9ff 100%);
             --text-gray: #444;
-            --nav-bg: rgba(255, 255, 255, 0.7);
+            --nav-bg: rgba(255, 255, 255, 0.8);
         }
 
-        /* 讓捲動變平滑 */
         html { scroll-behavior: smooth; }
 
         body, html { 
@@ -27,7 +24,7 @@
             line-height: 1.6;
         }
 
-        /* --- 導覽列：頁內導覽優化 --- */
+        /* --- 導覽列 --- */
         .nav-header {
             width: 100%; height: 70px;
             display: flex; justify-content: center; align-items: center;
@@ -36,29 +33,35 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             position: sticky; top: 0; z-index: 1000;
         }
-        .nav-box { display: flex; gap: 15px; align-items: center; }
+        .nav-box { display: flex; gap: 10px; align-items: center; padding: 0 15px; }
         .nav-item { 
-            padding: 8px 12px; cursor: pointer; color: #666; text-decoration: none;
-            letter-spacing: 1px; transition: 0.3s; font-weight: 500; font-size: 0.85rem;
+            padding: 8px 8px; cursor: pointer; color: #666; text-decoration: none;
+            letter-spacing: 1px; transition: 0.3s; font-weight: 500; font-size: 0.8rem;
         }
-        .nav-item:hover { color: var(--primary-indigo); }
-        
         .btn-link {
             text-decoration: none; background: var(--primary-indigo); color: #fff !important;
-            padding: 6px 16px; border-radius: 50px; font-size: 0.8rem;
-            transition: 0.3s; letter-spacing: 1px; font-weight: 400; margin-left: 10px;
+            padding: 6px 14px; border-radius: 50px; font-size: 0.75rem;
+            transition: 0.3s; letter-spacing: 1px; margin-left: 5px; white-space: nowrap;
         }
-        .btn-link:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(72, 52, 212, 0.2); }
 
         /* --- 主內容區 --- */
         .container { padding: 40px 5% 100px 5%; max-width: 1100px; margin: auto; }
 
-        .header-section { text-align: left; margin-bottom: 50px; padding-top: 20px; }
+        /* 標題區塊：使用強制單行與流體字體 */
+        .header-section { text-align: left; margin-bottom: 50px; padding-top: 20px; width: 100%; }
+        
         .main-title { 
             font-family: 'Noto Serif TC', serif;
-            font-size: 2.4rem; color: var(--primary-indigo); 
-            font-weight: 400; letter-spacing: 8px; margin: 0; 
+            /* 使用 clamp 讓字體隨螢幕寬度自動縮放，確保單行 */
+            font-size: clamp(1.3rem, 4vw, 2.2rem); 
+            color: var(--primary-indigo); 
+            font-weight: 400; 
+            letter-spacing: clamp(2px, 1vw, 6px);
+            margin: 0; 
+            white-space: nowrap; 
+            overflow: visible;
         }
+        
         .sub-tag {
             display: inline-block; background: var(--primary-indigo); color: #fff;
             padding: 3px 12px; border-radius: 4px; font-size: 0.7rem;
@@ -66,61 +69,49 @@
             font-family: 'Noto Sans TC'; font-weight: 400;
         }
 
-        /* 炫彩容器 */
+        /* 內容卡片容器 */
         .unicorn-box {
             background: var(--unicorn-grad);
-            border-radius: 40px;
-            padding: 60px 30px;
-            position: relative;
+            border-radius: 40px; padding: 50px 25px;
             box-shadow: 0 25px 60px rgba(162, 155, 254, 0.15);
         }
+        .matrix-layout { display: flex; gap: 12px; justify-content: space-between; }
+        .scroll-target { scroll-margin-top: 100px; flex: 1; display: flex; }
 
-        .matrix-layout {
-            position: relative; z-index: 10;
-            display: flex; gap: 15px; justify-content: space-between;
-        }
-
-        /* 頁內導覽目標微調（避免被導覽列遮住） */
-        .scroll-target { scroll-margin-top: 100px; flex: 1; display: flex; flex-direction: column; }
-
-        /* 毛玻璃卡片 */
+        /* 卡片內部：內容完全保留 */
         .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 30px;
-            padding: 25px;
-            height: 100%; transition: 0.3s;
-            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 30px;
+            padding: 25px; width: 100%; transition: 0.3s;
+            display: flex; flex-direction: column;
         }
-        .glass-card:hover { transform: translateY(-5px); background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .glass-card:hover { transform: translateY(-5px); background: #fff; }
 
-        .level-tag {
-            background: var(--primary-indigo); color: white;
-            padding: 2px 10px; border-radius: 50px; font-size: 0.7rem;
-            font-weight: 700; display: inline-block; margin-bottom: 15px;
-        }
-
-        .card-title { color: var(--primary-indigo); font-weight: 700; margin: 0 0 15px 0; font-size: 1.1rem; }
+        .level-tag { background: var(--primary-indigo); color: white; padding: 2px 10px; border-radius: 50px; font-size: 0.65rem; font-weight: 700; margin-bottom: 12px; display: inline-block; width: fit-content; }
+        .card-title { color: var(--primary-indigo); font-weight: 700; margin-bottom: 15px; font-size: 1.05rem; }
+        
+        /* 列表文字：內容完全保留，微調行高與字距以利排版 */
         .card-list { margin: 0; padding: 0; list-style: none; font-size: 0.9rem; color: #333; }
-        .card-list li { margin-bottom: 10px; display: flex; align-items: flex-start; line-height: 1.4; }
-        .card-list li::before { content: "✦"; color: var(--primary-indigo); margin-right: 8px; }
+        .card-list li { margin-bottom: 10px; display: flex; align-items: flex-start; line-height: 1.5; font-weight: 500; }
+        .card-list li::before { content: "✦"; color: var(--primary-indigo); margin-right: 6px; flex-shrink: 0; }
 
         .pc-arrow { display: flex; align-items: center; color: white; font-size: 1.2rem; }
         .mobile-arrow { display: none; }
 
+        /* 底部演說文案區 */
         .talk-text {
-            background: #fff; padding: 40px; border-radius: 30px;
+            background: #fff; padding: 35px; border-radius: 30px;
             margin-top: 40px; border: 1px solid #eee; color: #000;
         }
+        .talk-text h2 { font-size: 1.4rem; margin-bottom: 20px; font-family: 'Noto Serif TC'; }
 
+        /* 手機版適配 */
         @media (max-width: 992px) {
             .matrix-layout { flex-direction: column; gap: 10px; }
+            .mobile-arrow { display: block; text-align: center; color: white; padding: 5px; font-size: 1rem; }
             .pc-arrow { display: none; }
-            .mobile-arrow { display: block; text-align: center; color: white; padding: 10px; }
             .nav-box { gap: 5px; }
-            .nav-item { font-size: 0.75rem; padding: 5px; }
-            .btn-link { padding: 5px 12px; margin-left: 5px; }
+            .glass-card { padding: 20px; }
         }
     </style>
 </head>
@@ -132,7 +123,7 @@
         <a href="#level1" class="nav-item">技術奠基</a>
         <a href="#level2" class="nav-item">數位導師</a>
         <a href="#level3" class="nav-item">平台槓桿</a>
-        <a href="策略.html" class="btn-link">回頂部</a>
+        <a href="策略.html" class="btn-link">策略.html</a>
     </div>
 </header>
 
@@ -168,7 +159,7 @@
                         <li>Montor 2.0: 8大經營App</li>
                         <li>Montor 1.0: 導師數位辦公室</li>
                         <li>秘密武器：美業平台入口</li>
-                        <li>經營學/講師/寫書課程</li>
+                        <li>美髮經營學/講師/寫書課程</li>
                     </ul>
                 </div>
             </div>
@@ -193,12 +184,11 @@
     </div>
 
     <div class="talk-text">
-        <h2 style="color: var(--primary-indigo); margin-top: 0; font-weight: 700; font-family: 'Noto Serif TC';">致 10 位種子學員：</h2>
+        <h2>致 10 位種子學員：</h2>
         <p>跟著這張地圖走，你們不再只是拿剪刀的設計師，而是未來美業生態系的共同經營者。</p>
-        <p>從你們手上的三本書開始，到我親手開發的 8 個經營 App，每一步都是為了讓你們從「技術」走向「經營」，最終走向「槓桿化」的自由人生。</p>
+        <p>從你們手上的三本書開始，到我親手開發的 8 個經營 App，每一步都是為了讓你們從「技術」走向「經營」，最終走向「槓桿化」的自由人生。這是我為你們打造的數位大腦，讓我們一起把美髮業變得很酷！</p>
     </div>
 </div>
 
 </body>
 </html>
-
