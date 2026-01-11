@@ -5,137 +5,142 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活力美髮學堂 - 數位王國進化地圖</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
         :root {
             --primary-indigo: #4834d4;
             --soft-indigo: #f0edff;
             --highlight-pink: #fbc2eb;
             --unicorn-grad: linear-gradient(135deg, #a29bfe 0%, #fbc2eb 50%, #74b9ff 100%);
             --text-gray: #444;
+            --nav-bg: rgba(255, 255, 255, 0.2);
         }
 
-        body { 
-            margin: 0; 
-            font-family: -apple-system, "Microsoft JhengHei", "PingFang TC", sans-serif; 
+        body, html { 
+            margin: 0; padding: 0;
+            font-family: 'Noto Sans TC', -apple-system, sans-serif; 
             background: #fdfdfd; 
             color: var(--text-gray); 
             line-height: 1.6;
         }
 
-        /* 頂部標題 */
-        .container { padding: 40px 5%; max-width: 1200px; margin: auto; }
-        .brand-heading { border-left: 8px solid var(--primary-indigo); padding-left: 20px; margin-bottom: 40px; }
-        .brand-heading h1 { font-size: 2.2rem; margin: 0; color: var(--primary-indigo); font-weight: 900; }
+        /* --- 導覽列設計 --- */
+        .nav-header {
+            width: 100%; height: 70px;
+            display: flex; justify-content: center; align-items: center;
+            background: var(--nav-bg); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-box { display: flex; gap: 20px; align-items: center; }
+        .nav-item { 
+            padding: 8px 15px; cursor: pointer; color: #444; text-decoration: none;
+            letter-spacing: 1px; transition: 0.3s; font-weight: 500; font-size: 0.9rem;
+        }
+        .nav-item:hover { color: var(--primary-indigo); }
+        
+        .btn-link {
+            text-decoration: none; background: var(--primary-indigo); color: #fff !important;
+            padding: 6px 16px; border-radius: 50px; font-size: 0.8rem;
+            transition: 0.3s; letter-spacing: 1px; font-weight: 400;
+        }
+        .btn-link:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(72, 52, 212, 0.3); }
+
+        /* --- 主內容區 --- */
+        .container { padding: 60px 5%; max-width: 1100px; margin: auto; }
+
+        /* 標題區塊：左對齊 + 去粗體 */
+        .header-section {
+            text-align: left; margin-bottom: 50px;
+        }
+        .main-title { 
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.4rem; color: var(--primary-indigo); 
+            font-weight: 400; /* 去粗體 */
+            letter-spacing: 8px; margin: 0; 
+        }
+        .sub-tag {
+            display: inline-block; background: var(--primary-indigo); color: #fff;
+            padding: 3px 12px; border-radius: 4px; font-size: 0.7rem;
+            letter-spacing: 2px; margin-top: 15px; /* 移到標題下方 */
+            font-family: 'Noto Sans TC'; font-weight: 400;
+        }
 
         /* 炫彩容器 */
         .unicorn-box {
             background: var(--unicorn-grad);
             border-radius: 40px;
-            padding: 50px 30px;
+            padding: 60px 30px;
             position: relative;
-            box-shadow: 0 25px 60px rgba(162, 155, 254, 0.4);
+            box-shadow: 0 25px 60px rgba(162, 155, 254, 0.2);
             overflow: hidden;
         }
 
-        /* 裝飾光暈 */
-        .unicorn-box::before {
-            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        /* 佈局切換：重點核心 */
         .matrix-layout {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            gap: 20px;
-            justify-content: space-between;
+            position: relative; z-index: 10;
+            display: flex; gap: 15px; justify-content: space-between;
         }
 
-        /* 毛玻璃卡片樣式 */
+        /* 毛玻璃卡片 */
         .glass-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 30px;
             padding: 25px;
-            flex: 1;
-            transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            flex: 1; transition: 0.3s;
         }
-
-        .glass-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.95); }
+        .glass-card:hover { transform: translateY(-10px); background: #fff; }
 
         .level-tag {
-            background: var(--primary-indigo);
-            color: white;
-            padding: 3px 12px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            display: inline-block;
-            margin-bottom: 15px;
+            background: var(--primary-indigo); color: white;
+            padding: 2px 10px; border-radius: 50px; font-size: 0.7rem;
+            font-weight: 700; display: inline-block; margin-bottom: 15px;
         }
 
-        .card-title { color: var(--primary-indigo); font-weight: 900; margin: 0 0 15px 0; font-size: 1.2rem; }
-        .card-list { margin: 0; padding: 0; list-style: none; font-size: 0.95rem; font-weight: 700; }
-        .card-list li { margin-bottom: 8px; display: flex; align-items: flex-start; }
+        .card-title { color: var(--primary-indigo); font-weight: 700; margin: 0 0 15px 0; font-size: 1.1rem; }
+        .card-list { margin: 0; padding: 0; list-style: none; font-size: 0.9rem; color: #333; }
+        .card-list li { margin-bottom: 10px; display: flex; align-items: flex-start; line-height: 1.4; }
         .card-list li::before { content: "✦"; color: var(--primary-indigo); margin-right: 8px; }
 
-        /* 電腦版箭頭 */
-        .pc-arrow {
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        /* 手機版隱藏元素 */
+        .pc-arrow { display: flex; align-items: center; color: white; font-size: 1.2rem; }
         .mobile-arrow { display: none; }
 
-        /* ---------------------------------------------------
-           響應式調整：手機版 (螢幕寬度小於 992px)
-        --------------------------------------------------- */
-        @media (max-width: 992px) {
-            .matrix-layout {
-                flex-direction: column; /* 變為縱向 */
-                gap: 15px;
-            }
-
-            .pc-arrow { display: none; } /* 隱藏橫向箭頭 */
-            .mobile-arrow { 
-                display: block; text-align: center; color: white; 
-                padding: 5px 0; font-size: 1.2rem; 
-            }
-
-            .unicorn-box { padding: 30px 20px; border-radius: 30px; }
-            .brand-heading h1 { font-size: 1.6rem; }
-            .glass-card { padding: 20px; }
-        }
-
-        /* ---------------------------------------------------
-           演說文案區塊 - 僅加深文字顏色，其餘不變
-        --------------------------------------------------- */
+        /* 演說文案區 */
         .talk-text {
-            background: #fff;
-            padding: 35px;
-            border-radius: 30px;
-            margin-top: 40px;
-            border: 1px solid #eee;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
-            color: #000; /* 文字變深為純黑 */
+            background: #fff; padding: 40px; border-radius: 30px;
+            margin-top: 40px; border: 1px solid #eee;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            color: #000;
         }
-        .talk-text p {
-            font-weight: 500; /* 適度增加文字厚度，讓深色更顯眼 */
+        .talk-text p { font-weight: 400; font-size: 1.05rem; margin-bottom: 20px; }
+
+        /* 手機適配 */
+        @media (max-width: 992px) {
+            .matrix-layout { flex-direction: column; gap: 10px; }
+            .pc-arrow { display: none; }
+            .mobile-arrow { display: block; text-align: center; color: white; padding: 10px; }
+            .main-title { font-size: 1.8rem; letter-spacing: 4px; }
+            .nav-box { gap: 10px; }
+            .nav-item { font-size: 0.8rem; padding: 5px; }
         }
     </style>
 </head>
 <body>
 
+<header class="nav-header">
+    <div class="nav-box">
+        <a href="index.html" class="nav-item">回首頁</a>
+        <a href="#" class="nav-item" style="color: var(--primary-indigo); font-weight: 700;">進化地圖</a>
+        <a href="策略.html" class="btn-link">策略.html</a>
+    </div>
+</header>
+
 <div class="container">
-    <div class="brand-heading">
-        <h1>活力美髮學堂</h1>
-        <p>創始人數位經營藍圖 • 三級進化路徑</p>
+    <div class="header-section">
+        <h1 class="main-title">數位王國進化地圖</h1>
+        <div class="sub-tag">EVOLUTION ROADMAP</div>
     </div>
 
     <div class="unicorn-box">
@@ -161,7 +166,7 @@
                     <li>Montor 2.0: 8大經營App</li>
                     <li>Montor 1.0: 導師數位辦公室</li>
                     <li>秘密武器：美業平台入口</li>
-                    <li>美髮經營學/講師/寫書課程</li>
+                    <li>經營學/講師/寫書課程</li>
                 </ul>
             </div>
 
@@ -183,7 +188,7 @@
     </div>
 
     <div class="talk-text">
-        <h2 style="color: var(--primary-indigo); margin-top: 0; font-weight: 900;">致 10 位種子學員：</h2>
+        <h2 style="color: var(--primary-indigo); margin-top: 0; font-weight: 700; font-family: 'Noto Serif TC';">致 10 位種子學員：</h2>
         <p>跟著這張地圖走，你們不再只是拿剪刀的設計師，而是未來美業生態系的共同經營者。</p>
         <p>從你們手上的三本書開始，到我親手開發的 8 個經營 App，每一步都是為了讓你們從「技術」走向「經營」，最終走向「槓桿化」的自由人生。這是我為你們打造的數位大腦，讓我們一起把美髮業變得很酷！</p>
     </div>
