@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活力美髮學堂 - 維度躍遷戰略</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
 
         body, html { 
             margin: 0; padding: 0; height: 100%; 
@@ -24,7 +23,7 @@
             background-attachment: fixed;
         }
 
-        /* --- 電腦版導航 --- */
+        /* --- 電腦版導航 (極簡紫色加粗版) --- */
         .nav-header {
             width: 100%; height: 80px;
             display: flex; justify-content: center; align-items: center;
@@ -33,18 +32,28 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.4);
             z-index: 1000;
         }
-        .nav-box { display: flex; gap: 20px; align-items: center; }
+        .nav-box { display: flex; gap: 30px; align-items: center; }
         .nav-item { 
-            padding: 10px 15px; cursor: pointer; color: #444;
-            letter-spacing: 2px; transition: 0.3s; font-weight: 500; font-size: 0.95rem;
+            padding: 10px 5px; cursor: pointer; 
+            color: #6c5ce7; /* 預設紫色 */
+            letter-spacing: 2px; transition: all 0.2s ease; 
+            font-weight: 600; /* 全部加粗 */
+            font-size: 1rem;
+            border-bottom: none !important; /* 強制移除底線 */
+            text-decoration: none;
         }
-        .nav-item.active { color: #6c5ce7; border-bottom: 2px solid #6c5ce7; font-weight: 600; }
+        /* 選中時變為更粗 (900) */
+        .nav-item.active { 
+            color: #6c5ce7; 
+            font-weight: 900; 
+            border-bottom: none !important; 
+            transform: scale(1.05);
+        }
         
-        /* 策略按鈕樣式 */
         .btn-link {
             text-decoration: none; background: #6c5ce7; color: #fff !important;
             padding: 8px 18px; border-radius: 50px; font-size: 0.85rem;
-            transition: 0.3s; letter-spacing: 2px;
+            transition: 0.3s; letter-spacing: 2px; font-weight: 600;
         }
         .btn-link:hover { opacity: 0.8; transform: translateY(-2px); }
 
@@ -56,27 +65,25 @@
             scroll-behavior: smooth;
         }
 
-        /* 標題區塊：左對齊藝術化 */
         .header-section {
             width: 88%; max-width: 800px; margin-bottom: 40px;
-            text-align: left; /* 改為左對齊 */
+            text-align: left;
             opacity: 0; transform: translateX(-20px);
             animation: fadeInLeft 0.8s forwards;
         }
         .main-title { 
             font-size: 2.5rem; color: #1a1a1a; 
-            font-weight: 400; /* 去粗體，改為細體 */
-            letter-spacing: 12px; /* 增加字距營造藝術呼吸感 */
+            font-weight: 400; 
+            letter-spacing: 12px;
             margin: 0; 
         }
         .sub-tag {
             display: inline-block; background: #6c5ce7; color: #fff;
             padding: 4px 12px; border-radius: 4px; font-size: 0.7rem;
-            letter-spacing: 3px; margin-top: 15px; /* 移到標題下方 */
+            letter-spacing: 3px; margin-top: 15px;
             font-family: 'Noto Sans TC';
         }
 
-        /* 內容卡片 */
         .content-card {
             max-width: 800px; width: 88%;
             background: rgba(255, 255, 255, 0.5);
@@ -118,13 +125,19 @@
         .mobile-bottom-nav {
             display: none; position: fixed; bottom: 20px; left: 50%;
             transform: translateX(-50%); width: 92%; max-width: 450px;
-            height: 65px; background: rgba(255, 255, 255, 0.8);
+            height: 65px; background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(25px); border-radius: 40px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             z-index: 2000; justify-content: space-around; align-items: center;
         }
-        .m-nav-item { flex: 1; text-align: center; color: #888; font-size: 0.75rem; cursor: pointer; }
-        .m-nav-item.active { color: #6c5ce7; font-weight: 900; }
+        .m-nav-item { 
+            flex: 1; text-align: center; 
+            color: #6c5ce7; /* 手機版也是紫色 */
+            font-size: 0.85rem; cursor: pointer; 
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .m-nav-item.active { font-weight: 900; }
 
         @keyframes fadeInLeft {
             from { opacity: 0; transform: translateX(-20px); }
@@ -187,17 +200,17 @@
         const pc = document.getElementById('pc-nav');
         const mb = document.getElementById('mobile-nav');
         
-        // 電腦版：在「提案」後加入「策略.html」連結
+        // 電腦版
         let pcHtml = menu.map((name, i) => {
             let item = `<div class="nav-item ${i===0?'active':''}" onclick="loadPage(${i})">${name}</div>`;
             if(i === 0) item += `<a href="策略.html" class="btn-link">策略.html</a>`;
             return item;
         }).join('');
         
-        // 手機版：同樣在「提案」旁加入
+        // 手機版
         let mbHtml = menu.map((name, i) => {
             let item = `<div class="m-nav-item ${i===0?'active':''}" onclick="loadPage(${i})">${name}</div>`;
-            if(i === 0) item += `<a href="策略.html" class="m-nav-item" style="color:#6c5ce7; font-weight:bold;">策略</a>`;
+            if(i === 0) item += `<a href="策略.html" class="m-nav-item" style="color:#6c5ce7; font-weight:900;">策略</a>`;
             return item;
         }).join('');
 
@@ -215,15 +228,18 @@
             tag.innerText = pages[idx].tag;
             target.innerHTML = pages[idx].content;
             target.style.opacity = 1;
-            document.querySelectorAll('.nav-item, .m-nav-item').forEach((el, i) => {
-                // 排除 a 連結，只處理 nav-item
-                if(el.classList.contains('nav-item') || el.classList.contains('m-nav-item')){
-                     // 邏輯略作調整以適應新增的 A 標籤
-                }
+            
+            // 刷新 Active 狀態 (PC)
+            document.querySelectorAll('.nav-item').forEach((el, i) => {
+                el.classList.toggle('active', i === idx);
             });
-            // 重新刷新 active 狀態
-            const allItems = document.querySelectorAll('.nav-item');
-            allItems.forEach((el, i) => el.classList.toggle('active', i === idx));
+            // 刷新 Active 狀態 (Mobile)
+            document.querySelectorAll('#mobile-nav .m-nav-item').forEach((el, i) => {
+                // 因為手機版多了個 A 標籤，索引需小心處理，這裡簡單以文字判斷或直接對應
+                if(el.innerText === menu[idx]) el.classList.add('active');
+                else if(menu.includes(el.innerText)) el.classList.remove('active');
+            });
+            
             document.getElementById('content-target').scrollTop = 0;
         }, 300);
     }
