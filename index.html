@@ -5,111 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>活力美髮學堂 - 維度躍遷戰略</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
 
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Noto Serif TC', serif; overflow: hidden; background-color: #fff; color: #000; }
+        body, html { 
+            margin: 0; padding: 0; height: 100%; 
+            font-family: 'Noto Serif TC', serif; 
+            overflow: hidden; 
+            background-color: #fff;
+        }
         
+        /* 幻彩背景 */
         .app-container {
             display: flex; 
             flex-direction: column;
             height: 100vh;
-            background: white linear-gradient(105deg, #fff 0%, #f9f9f9 25%, #fceae6 40%, #fbc2eb 60%, #a1c4fd 85%, #c2e9fb 100%);
+            background: white linear-gradient(115deg, #fff 0%, #fdf2f0 20%, #fbc2eb 50%, #a1c4fd 80%, #c2e9fb 100%);
             background-attachment: fixed;
         }
 
-        /* --- 頂部導航 --- */
+        /* 導航列：回歸高級透明感 */
         .nav-header {
             width: 100%;
-            height: 70px;
+            height: 80px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.6); 
-            backdrop-filter: blur(20px); 
-            border-bottom: 1px solid #000; /* 加強邊框 */
+            background: rgba(255, 255, 255, 0.15); 
+            backdrop-filter: blur(25px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
             z-index: 1000;
         }
         
-        .nav-box { display: flex; gap: 15px; }
-
+        .nav-box { display: flex; gap: 25px; }
         .nav-item { 
-            padding: 5px 12px; 
-            cursor: pointer; 
-            color: #000;
-            letter-spacing: 1px; 
-            transition: 0.4s; 
-            font-weight: 500; 
-            font-size: 0.95rem;
+            padding: 8px 15px; cursor: pointer; color: #333;
+            letter-spacing: 2px; transition: 0.4s; font-weight: 400; font-size: 0.95rem;
         }
-        
-        .nav-item:hover { color: #6c5ce7; }
-        .nav-item.active { color: #6c5ce7; border-bottom: 2px solid #6c5ce7; }
+        .nav-item.active { color: #6c5ce7; border-bottom: 1px solid #6c5ce7; font-weight: 600; }
 
-        /* --- 內容顯示區 --- */
+        /* 內容區塊 */
         #content-target { 
-            flex: 1; 
-            width: 100%;
-            overflow-y: auto; 
-            padding: 50px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex: 1; width: 100%; overflow-y: auto; padding: 60px 0;
+            display: flex; flex-direction: column; align-items: center;
         }
 
+        /* 毛玻璃卡片 */
         .ebook-page {
-            max-width: 850px;
-            width: 85%;
-            background: #ffffff; /* 使用全白底色襯托黑字 */
-            padding: 65px 75px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            border: 1px solid #000; /* 外框加黑 */
-            margin-bottom: 60px;
-            line-height: 2.3;
-            letter-spacing: 1.5px;
-            transition: opacity 0.4s ease;
+            max-width: 800px; width: 88%;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(35px);
+            border-radius: 40px;
+            padding: 70px;
+            box-shadow: 0 40px 100px rgba(108, 92, 231, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            margin-bottom: 80px;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* 標題全黑 */
-        .page-title { font-size: 2rem; margin-bottom: 45px; text-align: center; color: #000; font-weight: 600; letter-spacing: 3px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        /* 標題與次標題 */
+        .page-title { 
+            font-size: 1.8rem; margin-bottom: 50px; text-align: center; 
+            color: #000; font-weight: 600; letter-spacing: 5px; 
+        }
         
-        /* 內文全黑加深 */
-        .text-content { font-size: 1.25rem; color: #000; font-weight: 400; margin-bottom: 30px; text-align: justify; white-space: pre-wrap; }
-        
-        /* 總結區塊加強 */
-        .summary-highlight {
-            background: #fdfdfd;
-            padding: 40px;
-            border: 2px solid #000; /* 黑色實線框 */
-            margin: 45px 0;
-            font-size: 1.25rem;
-            color: #000;
-            line-height: 2.4;
+        .sub-header { 
+            font-size: 1.4rem; color: #111; font-weight: 600; 
+            margin-bottom: 30px; letter-spacing: 2px;
+            display: block; border-left: 4px solid #6c5ce7; padding-left: 20px;
         }
 
-        /* 對比區塊設計 */
-        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 35px; border-top: 2px solid #000; padding-top: 35px; }
-        .vs-label { font-size: 0.9rem; color: #000; text-transform: uppercase; margin-bottom: 15px; display: block; font-weight: 600; text-decoration: underline; }
+        /* 慢慢明朗的段落排版 */
+        .text-content { 
+            font-size: 1.2rem; color: #222; font-weight: 400; 
+            line-height: 2.2; margin-bottom: 40px; text-align: justify;
+        }
+
+        /* 總結區塊：精緻漸層背襯 */
+        .summary-box {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(108, 92, 231, 0.05));
+            padding: 45px; border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            margin: 50px 0; font-size: 1.25rem; color: #000;
+        }
+
+        /* 比較區塊：橫向律動 */
+        .vs-grid { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; 
+            margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.05);
+        }
         
-        .vs-content { font-size: 1.2rem; color: #000; line-height: 2.1; font-weight: 400; }
-        .premium-text { color: #6c5ce7; font-weight: 500; border-left: 4px solid #6c5ce7; padding-left: 20px; }
+        .vs-side { display: flex; flex-direction: column; gap: 20px; }
+        .label-v { 
+            font-size: 0.9rem; color: #888; letter-spacing: 3px; 
+            font-family: 'Noto Sans TC'; font-weight: 500;
+        }
+        .vs-body { font-size: 1.15rem; line-height: 2.1; color: #333; font-weight: 400; }
+        
+        /* 妳的維度高亮 */
+        .premium-side { 
+            background: rgba(108, 92, 231, 0.04); padding: 30px; 
+            border-radius: 25px; border: 1px solid rgba(108, 92, 231, 0.1);
+        }
+        .highlight-text { color: #6c5ce7; font-weight: 600; }
 
-        /* 手機版導航 */
-        .mobile-nav { display: none; position: fixed; width: 100%; left: 0; background: #fff; z-index: 2000; border-bottom: 1px solid #000; }
-        #mobile-top { top: 0; text-align: center; line-height: 60px; font-weight: 600; color: #000; font-size: 1.1rem; letter-spacing: 2px; }
-        #mobile-bottom { bottom: 0; border-top: 1px solid #000; padding-bottom: env(safe-area-inset-bottom); }
-        .mobile-nav-list { display: flex; justify-content: space-around; height: 60px; }
-        .m-btn { flex: 1; text-align: center; color: #000; display: flex; flex-direction: column; justify-content: center; cursor: pointer; font-size: 0.9rem; font-weight: 500; }
-        .m-btn.active { background: #000; color: #fff; }
-
+        /* 手機版適配 */
         @media (max-width: 768px) {
             .nav-header { display: none; }
-            .mobile-nav { display: block; }
-            #content-target { margin-top: 60px; margin-bottom: 60px; padding: 20px 0; }
-            .ebook-page { padding: 45px 25px; width: 92%; border-radius: 0; }
-            .text-content { font-size: 1.15rem; }
-            .vs-content { font-size: 1.1rem; }
-            .vs-grid { grid-template-columns: 1fr; gap: 40px; }
+            .ebook-page { padding: 45px 30px; width: 92%; }
             .page-title { font-size: 1.5rem; }
+            .sub-header { font-size: 1.2rem; }
+            .vs-grid { grid-template-columns: 1fr; gap: 40px; }
         }
     </style>
 </head>
@@ -117,109 +122,133 @@
 
 <div class="app-container">
     <header class="nav-header">
-        <div class="nav-box">
-            <div class="nav-item active" onclick="showPage(0)">合作價值提案</div>
-            <div class="nav-item" onclick="showPage(1)">系統開發者</div>
-            <div class="nav-item" onclick="showPage(2)">平台生態</div>
-            <div class="nav-item" onclick="showPage(3)">數位槓桿</div>
-            <div class="nav-item" onclick="showPage(4)">數據資產</div>
-        </div>
+        <div class="nav-box" id="nav-container">
+            </div>
     </header>
-
-    <div id="mobile-top" class="mobile-nav">VITALITY ACADEMY</div>
 
     <main id="content-target">
         <div class="ebook-page" id="page-content"></div>
     </main>
-
-    <nav id="mobile-bottom" class="mobile-nav">
-        <div class="mobile-nav-list">
-            <div class="m-btn active" onclick="showPage(0)">提案</div>
-            <div class="m-btn" onclick="showPage(1)">系統</div>
-            <div class="m-btn" onclick="showPage(2)">生態</div>
-            <div class="m-btn" onclick="showPage(3)">槓桿</div>
-            <div class="m-btn" onclick="showPage(4)">數據</div>
-        </div>
-    </nav>
 </div>
 
 <script>
-    const pages = [
+    const data = [
         {
             title: "「合作價值提案」",
             content: `
-                <div class="text-content"><b>何謂美髮業極少人能做到的「維度提升」</b><br>在美髮產業中，絕大多數人的成長邏輯是「線性的」：技術更好→收費更高→開店（投入更多勞力）。而我所做的「維度提升」，是直接打破這個天花板，從勞力競爭躍遷到系統競爭。具體來說，我完成了以下四個維度的跨越：</div>
+                <span class="sub-header">何謂美髮業極少人能做到的「維度提升」</span>
+                <div class="text-content">
+                    在美髮產業中，絕大多數人的成長邏輯是「線性的」：技術更好→收費更高→開店（投入更多勞力）。<br><br>
+                    而我所做的<b>「維度提升」</b>，是直接打破這個天花板，從勞力競爭躍遷到系統競爭。具體來說，我完成了以下四個維度的跨越：
+                </div>
                 
-                <div class="summary-highlight">
-                    <b>總結來說</b><br>
-                    維度提升 = 降維打擊。<br>
-                    當其他美髮人還在泥淖裡辛苦勞作、煩惱員工離職或客戶流失時，我是站在高處，透過「書本（理論）」+「App（工具）」+「公司化（槓桿）」這三位一體的系統在俯瞰戰場。<br><br>
-                    我們要的不是「更多的工作」，而是一個「新的生命維度」（既賺到錢，又有生活品質的快意人生）。
+                <div class="summary-box">
+                    <b style="color:#6c5ce7; display:block; margin-bottom:15px; letter-spacing:2px;">總結來說</b>
+                    維度提升 = 降維打擊。<br><br>
+                    當其他美髮人還在泥淖裡辛苦勞作時，我是站在高處，透過<b>「書本（理論）」+「App（工具）」+「公司化（槓桿）」</b>這三位一體的系統在俯瞰戰場。<br><br>
+                    我們要的不是「更多的工作」，而是一個「新的生命維度」。
                 </div>
 
-                <div class="text-content">我用這四個「維度提升」的優勢，形成一份「合作價值提案」嗎？<br>加入我的學堂，不是來打工，而是來升級你們的商業維度！</div>
-            `
-        },
-        {
-            title: "1. 從「手藝人」提升至「系統開發者」",
-            content: `
-                <div class="vs-grid">
-                    <div class="vs-content"><span class="vs-label">一般人：手藝人思維</span>專研剪燙染，目標是成為名師。這依然是用「時間換錢」，手停，錢就停。</div>
-                    <div class="vs-content premium-text"><span class="vs-label">我的維度：系統開發思維</span>我跳出技術本身，去開發 Montor 1.0 & 2.0。我是在為產業設計「大腦」。當別人的技術是存在腦袋裡，我的經營邏輯已經寫成了 8 個 App。過去我只是教人怎麼剪，現在的我，是直接給你們一套自動運行的獲利工具。</div>
+                <div class="text-content" style="text-align:center; color:#666;">
+                    加入我的學堂，不是來打工，<br>
+                    而是來升級你們的商業維度！
                 </div>
             `
         },
         {
-            title: "2. 從「個體教學」提升至「平台生態」",
+            title: "1. 從手藝人到系統開發者",
             content: `
                 <div class="vs-grid">
-                    <div class="vs-content"><span class="vs-label">一般人：孤立教學</span>開課教學生，學生學完就走，甚至變成競爭對手。</div>
-                    <div class="vs-content premium-text"><span class="vs-label">我的維度：平台生態思維</span>我建立的是「活力美髮學堂」平台。<br>
-・技術層面：有三本著作作為標準。<br>
-・講師層面：我設計了「專案講師」制度，讓能為自己工作。<br>
-・資源層面：提供場地與數位系統，我成了美業的「基礎設施提供者」</div>
+                    <div class="vs-side">
+                        <span class="label-v">一般人：手藝人路徑</span>
+                        <div class="vs-body">專研剪燙染，目標是成為名師。這依然是用「時間換錢」，手停，錢就停。</div>
+                    </div>
+                    <div class="vs-side premium-side">
+                        <span class="label-v">我的維度：系統開發思維</span>
+                        <div class="vs-body">跳出技術本身，去開發 Montor 1.0 & 2.0。<br><br>
+                        經營邏輯已寫成 <span class="highlight-text">8 個 App</span>。過去我教人怎麼剪，現在我給你們一套自動運行的獲利工具。</div>
+                    </div>
                 </div>
             `
         },
         {
-            title: "3. 從「實體資產」提升至「數位槓桿」",
+            title: "2. 從個體教學到平台生態",
             content: `
                 <div class="vs-grid">
-                    <div class="vs-content"><span class="vs-label">一般人：擴張思維</span>想要擴張就得借錢開分店，背負龐大的房租與人事成本（重資產）。</div>
-                    <div class="vs-content premium-text"><span class="vs-label">我的維度：槓桿思維</span>我實施的是「輕資產、高槓桿」模式。<br>
-・透過線上課程（Montor 2.0）無限複製我的經營邏輯。<br>
-・教學場地可以是專案老師的，也可以是學堂的，靈活調度。<br>
-・未來還有秘密武器-美業平台入口，客人來自網路上，用網路結合實體店面，稱為天羅地網。</div>
+                    <div class="vs-side">
+                        <span class="label-v">一般人：教學模式</span>
+                        <div class="vs-body">開課教學生，學生學完就走，甚至變成競爭對手。</div>
+                    </div>
+                    <div class="vs-side premium-side">
+                        <span class="label-v">我的維度：平台生態思維</span>
+                        <div class="vs-body">建立「活力美髮學堂」平台。<br><br>
+                        以三本著作作為標準，設計「專案講師」制度。提供場地與數位系統，我成了美業的 <span class="highlight-text">基礎設施提供者</span>。</div>
+                    </div>
                 </div>
             `
         },
         {
-            title: "4. 從「主觀經驗」提升至「數據資產」",
+            title: "3. 從實體資產到數位槓桿",
             content: `
                 <div class="vs-grid">
-                    <div class="vs-content"><span class="vs-label">一般人：直覺經營</span>經營靠感覺，今天客人多不多？利潤剩多少？通常要到月底看存摺才知道。</div>
-                    <div class="vs-content premium-text"><span class="vs-label">我的維度：數據思維</span>透過 1.0 的導師平台與 2.0 學堂數位助理的 8 個 App，我將模糊的經驗轉化為精確的數據。<br>
-・我能看見客戶的回流規律、分潤的精確數值、庫存的流動。<br>
-・數據就是權威，成為我的 10 位種子學員，學習數位經營管理，時代就在你的腳下。</div>
+                    <div class="vs-side">
+                        <span class="label-v">一般人：擴張路徑</span>
+                        <div class="vs-body">借錢開分店，背負龐大的房租與人事成本，資產重且風險大。</div>
+                    </div>
+                    <div class="vs-side premium-side">
+                        <span class="label-v">我的維度：高槓桿思維</span>
+                        <div class="vs-body">實施「輕資產、高槓桿」模式。<br><br>
+                        透過線上課程無限複製。結合 <span class="highlight-text">天羅地網</span> 策略，用網路結合實體店面，讓客人來自全網。</div>
+                    </div>
+                </div>
+            `
+        },
+        {
+            title: "4. 從主觀經驗到數據資產",
+            content: `
+                <div class="vs-grid">
+                    <div class="vs-side">
+                        <span class="label-v">一般人：直覺經營</span>
+                        <div class="vs-body">經營靠感覺，利潤剩多少通常要到月底看存摺才知道。</div>
+                    </div>
+                    <div class="vs-side premium-side">
+                        <span class="label-v">我的維度：數據權威</span>
+                        <div class="vs-body">透過 8 個 App 將模糊經驗轉化為精確數據。<br><br>
+                        精確看見回流規律與庫存流動。時代就在 <span class="highlight-text">10 位種子學員</span> 的腳下。</div>
+                    </div>
                 </div>
             `
         }
     ];
 
+    const menu = ["合作提案", "系統開發", "平台生態", "數位槓桿", "數據資產"];
+
+    function renderNav() {
+        const nav = document.getElementById('nav-container');
+        nav.innerHTML = menu.map((name, i) => `
+            <div class="nav-item ${i === 0 ? 'active' : ''}" onclick="showPage(${i})">${name}</div>
+        `).join('');
+    }
+
     function showPage(index) {
         const target = document.getElementById('page-content');
         target.style.opacity = 0;
+        target.style.transform = "translateY(20px)";
         
         setTimeout(() => {
-            target.innerHTML = `<h1 class="page-title">${pages[index].title}</h1>${pages[index].content}`;
+            target.innerHTML = `<h1 class="page-title">${data[index].title}</h1>${data[index].content}`;
             target.style.opacity = 1;
+            target.style.transform = "translateY(0)";
+            
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
             document.getElementById('content-target').scrollTop = 0;
-        }, 200);
-
-        document.querySelectorAll('.nav-item, .m-btn').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.nav-header .nav-item')[index].classList.add('active');
-        document.querySelectorAll('.mobile-nav .m-btn')[index].classList.add('active');
+        }, 300);
     }
+
+    renderNav();
     showPage(0);
 </script>
 
