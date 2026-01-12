@@ -203,7 +203,7 @@
         // 電腦版
         let pcHtml = menu.map((name, i) => {
             let item = `<div class="nav-item ${i===0?'active':''}" onclick="loadPage(${i})">${name}</div>`;
-            if(i === 0) item += `<a href="策略.html" class="btn-link">策略.html</a>`;
+            if(i === 0) item += `<a href="策略.html" class="btn-link">策略</a>`;
             return item;
         }).join('');
         
@@ -250,3 +250,4 @@
 
 </body>
 </html>
+
